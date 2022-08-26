@@ -24,4 +24,32 @@ class HumanUseCaseTest {
         boolean isMuntant = humanUseCase.isMutant(dna);
         Assertions.assertTrue(isMuntant);
     }
+
+    @Test
+    void isMutantTrueByHorizontalDnaTest() {
+        String[] dna = {"ATGCGA", "CCGTTC", "TTATGT", "AGAAGG", "CACCTA", "TCAAAA"};
+        boolean isMuntant = humanUseCase.isMutant(dna);
+        Assertions.assertTrue(isMuntant);
+    }
+
+    @Test
+    void isMutantTrueByVerticalDnaTest(){
+        String[] dna = {"ATGCGA", "CCGTTC", "TTATGT", "AGATGG", "CACTTA", "TCACTG"};
+        boolean isMuntant = humanUseCase.isMutant(dna);
+        Assertions.assertTrue(isMuntant);
+    }
+
+    @Test
+    void isMutantTrueByDiagonalDnaTest(){
+        String[] dna = {"ATGCGA", "CCGGTC", "TTATGT", "AGAAGG", "CACCTA", "TCACTG"};
+        boolean isMuntant = humanUseCase.isMutant(dna);
+        Assertions.assertTrue(isMuntant);
+    }
+
+    @Test
+    void isMutantTrueByInvertDiagonalDnaTest(){
+        String[] dna = {"ATGCGA", "CCGTTC", "TTATGT", "AGATTG", "CACTTA", "TCTCTG"};
+        boolean isMuntant = humanUseCase.isMutant(dna);
+        Assertions.assertTrue(isMuntant);
+    }
 }
