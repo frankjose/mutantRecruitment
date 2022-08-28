@@ -1,6 +1,6 @@
 package com.meli.mutant.domain.model;
 
-public interface HumanRepository {
+public interface DnaRepository {
 
     boolean isMutant(String[] dna);
     boolean isValidDna(String[] dna);
