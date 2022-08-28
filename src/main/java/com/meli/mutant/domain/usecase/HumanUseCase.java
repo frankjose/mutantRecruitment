@@ -1,9 +1,17 @@
 package com.meli.mutant.domain.usecase;
 
+import com.meli.mutant.domain.model.Human;
 import com.meli.mutant.domain.model.HumanRepository;
+
 
 public class HumanUseCase implements HumanRepository {
 
+
+    Human human;
+
+    HumanUseCase(Human human){
+        this.human = human;
+    }
 
     @Override
     public boolean isMutant(String[] dna) {
@@ -50,8 +58,13 @@ public class HumanUseCase implements HumanRepository {
         return isMutant;
     }
 
+    @Override
+    public boolean isValidDna(String[] dna) {
+        return false;
+    }
+
     boolean isEqual(char a, char b, char c, char d) {
-        return a == b && b == c && c == d;
+        return (a == b && b == c && c == d);
     }
 
 }
