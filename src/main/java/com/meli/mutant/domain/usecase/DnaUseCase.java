@@ -1,17 +1,25 @@
 package com.meli.mutant.domain.usecase;
 
 import com.meli.mutant.domain.model.Dna;
+import com.meli.mutant.domain.model.DnaException;
 import com.meli.mutant.domain.model.DnaRepository;
+import com.meli.mutant.infrastructure.drivenadapters.jparepository.DnaEntity;
+import com.meli.mutant.infrastructure.drivenadapters.jparepository.DnaEntityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class DnaUseCase implements DnaRepository {
 
+    @Autowired
+    DnaEntityRepository dnaEntityRepository;
 
-    Dna dna;
+    DnaEntity dnaEntity;
 
-    DnaUseCase(Dna dna){
-        this.dna = dna;
-    }
+    public DnaUseCase(){ }
+
 
     @Override
     public boolean isMutant(String[] dna) {
@@ -78,8 +86,24 @@ public class DnaUseCase implements DnaRepository {
         return isValidDna;
     }
 
+    public ResponseEntity<String> checkDna(Dna dna){
+        if(!isValidDna(dna.getDna()))
+           throw new DnaException("DNA invalido");
+
+        boolean isMutant = isMutant(dna.getDna());
+        dnaEntity = new DnaEntity(dna.getDna()[0], isMutant);
+        dnaEntityRepository.save(dnaEntity);
+
+        if(isMutant){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
     boolean isEqual(char a, char b, char c, char d) {
         return (a == b && b == c && c == d);
     }
+
 
 }

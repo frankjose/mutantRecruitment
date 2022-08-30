@@ -10,12 +10,10 @@ class DnaUseCaseTest {
 
 
     private DnaUseCase dnaUseCase;
-    private Dna dna;
 
     @BeforeEach
     void setUp() {
-        dna = new Dna();
-        dnaUseCase = new DnaUseCase(dna);
+        dnaUseCase = new DnaUseCase();
     }
 
     @Test
