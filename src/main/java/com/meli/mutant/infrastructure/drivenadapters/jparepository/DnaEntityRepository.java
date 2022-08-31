@@ -9,7 +9,7 @@ public class DnaEntityRepository {
     @Autowired
     private DnaCrudRepository dnaCrudRepository;
 
-    public void save(DnaEntity dna){
-        dnaCrudRepository.save(dna);
+    public DnaEntity save(DnaEntity dna){
+         return dnaCrudRepository.save(dna);
     }
 }
