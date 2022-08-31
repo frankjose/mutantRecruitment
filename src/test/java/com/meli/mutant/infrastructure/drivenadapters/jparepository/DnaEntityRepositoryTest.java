@@ -9,6 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 
 
@@ -39,6 +42,22 @@ class DnaEntityRepositoryTest {
 
         DnaEntity dnaEntityResponse = dnaEntityRepository.save(dnaEntity);
         Assertions.assertNotNull(dnaEntityResponse);
+
+    }
+
+    @Test
+    void findAll(){
+
+        List<DnaEntity> dnaEntities = new LinkedList<>();
+        dnaEntities.add(new DnaEntity("AAAAAA", true));
+        dnaEntities.add(new DnaEntity("TTTTTT", true));
+
+        when(dnaEntityRepository.getAll()).thenReturn(dnaEntities);
+
+
+        List<DnaEntity> dnaEntitiesResponse = dnaEntityRepository.getAll();
+
+        Assertions.assertNotNull(dnaEntitiesResponse);
 
     }
 }

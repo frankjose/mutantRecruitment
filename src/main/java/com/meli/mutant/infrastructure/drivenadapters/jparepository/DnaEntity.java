@@ -26,8 +26,18 @@ public class DnaEntity {
     @Column(name = "is_mutant")
     Boolean isMutant;
 
+    public DnaEntity(){}
+
     public DnaEntity(String dnaValue, Boolean isMutant) {
         this.dnaValue = dnaValue;
         this.isMutant = isMutant;
+    }
+
+    public Boolean getIsMutant() {
+        return isMutant;
+    }
+
+    public void setMutant(Boolean mutant) {
+        isMutant = mutant;
     }
 }

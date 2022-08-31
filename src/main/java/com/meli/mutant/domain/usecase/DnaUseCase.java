@@ -3,12 +3,21 @@ package com.meli.mutant.domain.usecase;
 import com.meli.mutant.domain.model.Dna;
 import com.meli.mutant.domain.model.DnaException;
 import com.meli.mutant.domain.model.DnaRepository;
+import com.meli.mutant.domain.model.Stats;
 import com.meli.mutant.infrastructure.drivenadapters.jparepository.DnaEntity;
 import com.meli.mutant.infrastructure.drivenadapters.jparepository.DnaEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 
 @Component
 public class DnaUseCase implements DnaRepository {
@@ -99,6 +108,31 @@ public class DnaUseCase implements DnaRepository {
         }else{
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+    }
+
+    public ResponseEntity<Object> retrieveDnaStats(){
+
+        Stats stats = new Stats();
+
+        List<DnaEntity> dnaEntities = dnaEntityRepository.getAll();
+
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float countMutantDna = 0;
+        float countHumanDna = 0;
+
+        for(DnaEntity dnaEntityRow : dnaEntities){
+            if(dnaEntityRow.getIsMutant()) countMutantDna++;
+
+            if(!dnaEntityRow.getIsMutant()) countHumanDna++;
+        }
+
+        stats.setCountMutantDna(countMutantDna);
+        stats.setCountHumanDna(countHumanDna);
+
+        return new ResponseEntity<Object>(stats,HttpStatus.OK);
+
+
+
     }
 
     boolean isEqual(char a, char b, char c, char d) {

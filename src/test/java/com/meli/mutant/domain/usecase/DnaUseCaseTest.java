@@ -13,6 +13,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 class DnaUseCaseTest {
@@ -28,10 +33,15 @@ class DnaUseCaseTest {
 
     private Dna dnaModel;
 
+    private float countMutantDna;
+    private float countHumanDna;
+
     @BeforeEach
     void setUp() {
         dnaModel = new Dna();
-        //dnaUseCase = new DnaUseCase();
+
+        this.countMutantDna = 40;
+        this.countHumanDna = 100;
 
     }
 
@@ -137,6 +147,17 @@ class DnaUseCaseTest {
 
         int expectedStatusCode = 403;
         int actualStatusCode = stringResponseEntity.getStatusCode().value();
+
+        Assertions.assertEquals(expectedStatusCode, actualStatusCode);
+    }
+
+    @Test
+    void retrieveDnaStatsTest(){
+
+        ResponseEntity<Object> actualStats = dnaUseCase.retrieveDnaStats();
+
+        int expectedStatusCode = 200;
+        int actualStatusCode = actualStats.getStatusCode().value();
 
         Assertions.assertEquals(expectedStatusCode, actualStatusCode);
     }
