@@ -8,6 +8,11 @@ Java, Spring Boot, RDS PostgreSQL, AWS EKS, AWS ECR, Docker
 
 ![](./src/main/resources/images/adn.png)
 
+
+### Arquitectura
+
+![](./src/main/resources/images/meli-diagram.png)
+
 ### Como usar
 
 **Metodo**: isMuntant
