@@ -126,8 +126,8 @@ public class DnaUseCase implements DnaRepository {
             if(!dnaEntityRow.getIsMutant()) countHumanDna++;
         }
 
-        stats.setCountMutantDna(countMutantDna);
-        stats.setCountHumanDna(countHumanDna);
+        stats.setCountMutantDna(Float.parseFloat(decimalFormat.format(countMutantDna)));
+        stats.setCountHumanDna(Float.parseFloat(decimalFormat.format(countHumanDna)));
 
         return new ResponseEntity<Object>(stats,HttpStatus.OK);
 

@@ -19,6 +19,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
 
 	testImplementation 'org.junit.vintage:junit-vintage-engine:5.8.2'
 	testImplementation 'com.h2database:h2:2.1.210'

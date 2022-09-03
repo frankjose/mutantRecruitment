@@ -2,6 +2,8 @@ package com.meli.mutant.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.DecimalFormat;
+
 public class Stats {
 
     @JsonProperty("count_mutant_dna")
@@ -23,7 +25,8 @@ public class Stats {
     }
 
     public float getRatio() {
-        return countMutantDna/countHumanDna;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Float.parseFloat(decimalFormat.format(countMutantDna/countHumanDna));
     }
 
 }
