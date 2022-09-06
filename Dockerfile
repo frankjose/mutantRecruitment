@@ -4,7 +4,7 @@ WORKDIR /home/gradle/src
 RUN gradle build --no-daemon
 
 FROM openjdk:11.0
-EXPOSE 8080
+EXPOSE 80
 RUN mkdir /app
 VOLUME /tmp
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
