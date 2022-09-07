@@ -18,6 +18,11 @@ Como parte de la evolución y para atender el requerimiento no funcional de la a
 
 ![](./src/main/resources/images/meli-diagramv2.png)
 
+### Analisis estatico (SonarQube)
+Para la inspección continua de la calidad del código y para realizar revisiones automáticas con análisis estático del código para detectar errores se uso SonarQube integrado con Jacoco
+
+![](./src/main/resources/images/sonarquebe.png)
+
 ### Como usar
 
 **Metodo**: isMuntant
