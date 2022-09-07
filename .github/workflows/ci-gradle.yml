@@ -1,3 +1,4 @@
+
 name: CI
 on: [push]
 jobs:
@@ -10,5 +11,6 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-      - name: Build with Gradle
-        run: ./gradlew build
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build

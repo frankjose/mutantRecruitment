@@ -7,7 +7,6 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
 @Entity
 @Table(name = "dna")
 public class DnaEntity {
