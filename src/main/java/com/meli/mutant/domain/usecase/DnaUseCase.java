@@ -42,28 +42,28 @@ public class DnaUseCase implements DnaRepository {
 
                 char pivot = dna[x].charAt(y);
 
-                if(y < pivotLimit){
-                    if (isEqual(pivot, dna[x].charAt(y + 1), dna[x].charAt(y + 2), dna[x].charAt(y + 3))){
+                if((y < pivotLimit) &&
+                    (isEqual(pivot, dna[x].charAt(y + 1), dna[x].charAt(y + 2), dna[x].charAt(y + 3)))){
                         isMutant = true;
-                    }
+
                 }
 
-                if(x < pivotLimit){
-                    if (isEqual(pivot, dna[x + 1].charAt(y), dna[x + 2].charAt(y), dna[x + 3].charAt(y))) {
+                if((x < pivotLimit) &&
+                     (isEqual(pivot, dna[x + 1].charAt(y), dna[x + 2].charAt(y), dna[x + 3].charAt(y)))) {
                         isMutant = true;
-                    }
+
                 }
 
-                if (x < pivotLimit && y < pivotLimit) {
-                    if (isEqual(pivot, dna[x + 1].charAt(y + 1), dna[x + 2].charAt(y + 2), dna[x + 3].charAt(y + 3))) {
+                if ((x < pivotLimit && y < pivotLimit) &&
+                    (isEqual(pivot, dna[x + 1].charAt(y + 1), dna[x + 2].charAt(y + 2), dna[x + 3].charAt(y + 3)))) {
                         isMutant = true;
-                    }
+
                 }
 
-                if (x >= 3 && y < pivotLimit) {
-                    if (isEqual(pivot, dna[x - 1].charAt(y + 1), dna[x - 2].charAt(y + 2), dna[x - 3].charAt(y + 3))) {
+                if ((x >= 3 && y < pivotLimit) &&
+                    (isEqual(pivot, dna[x - 1].charAt(y + 1), dna[x - 2].charAt(y + 2), dna[x - 3].charAt(y + 3)))) {
                         isMutant = true;
-                    }
+
                 }
                 if(isMutant) break outerLoop;
             }
