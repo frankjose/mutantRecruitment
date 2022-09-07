@@ -12,12 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.summingInt;
 
 @Component
 public class DnaUseCase implements DnaRepository {
@@ -33,8 +28,8 @@ public class DnaUseCase implements DnaRepository {
     @Override
     public boolean isMutant(String[] dna) {
         boolean isMutant = false;
-        int N = dna[0].length();
-        int pivotLimit = N - 3;
+        int n = dna[0].length();
+        int pivotLimit = n - 3;
 
         outerLoop:
         for(int x = 0; x < dna.length; x++){
