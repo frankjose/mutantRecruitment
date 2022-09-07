@@ -1,8 +1,5 @@
 package com.meli.mutant.infrastructure.drivenadapters.jparepository;
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
