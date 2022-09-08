@@ -116,11 +116,13 @@ public class DnaUseCase implements DnaRepository {
         float countHumanDna = 0;
 
         for(DnaEntity dnaEntityRow : dnaEntities){
-            if(dnaEntityRow.getIsMutant()) countMutantDna++;
 
-            if(!dnaEntityRow.getIsMutant()) countHumanDna++;
+            if(Boolean.TRUE.equals(dnaEntityRow.getIsMutant()))
+                countMutantDna++;
+            else
+                countHumanDna++;
         }
-        
+
         float ratio = (countHumanDna > 0) ? Float.parseFloat(decimalFormat.format(countMutantDna/countHumanDna)) : 0;
 
         stats = new Stats(
