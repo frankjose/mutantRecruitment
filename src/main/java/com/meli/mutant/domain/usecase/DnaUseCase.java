@@ -107,7 +107,7 @@ public class DnaUseCase implements DnaRepository {
 
     public ResponseEntity<Object> retrieveDnaStats(){
 
-        Stats stats = new Stats();
+        Stats stats;
 
         List<DnaEntity> dnaEntities = dnaEntityRepository.getAll();
 
@@ -120,9 +120,18 @@ public class DnaUseCase implements DnaRepository {
 
             if(!dnaEntityRow.getIsMutant()) countHumanDna++;
         }
+        
+        float ratio = (countHumanDna > 0) ? Float.parseFloat(decimalFormat.format(countMutantDna/countHumanDna)) : 0;
 
-        stats.setCountMutantDna(Float.parseFloat(decimalFormat.format(countMutantDna)));
-        stats.setCountHumanDna(Float.parseFloat(decimalFormat.format(countHumanDna)));
+        stats = new Stats(
+                Float.parseFloat(decimalFormat.format(countMutantDna)),
+                Float.parseFloat(decimalFormat.format(countHumanDna)),
+                ratio
+                );
+
+
+
+
 
         return new ResponseEntity<Object>(stats,HttpStatus.OK);
 
